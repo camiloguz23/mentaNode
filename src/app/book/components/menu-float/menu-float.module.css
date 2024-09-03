@@ -1,0 +1,23 @@
+.contentFloat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  .btn-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 1px 4px 12px 1px rgba(0, 0, 0, 0.25);
+    padding: 3px;
+  }
+
+  &.textcolor {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+}
