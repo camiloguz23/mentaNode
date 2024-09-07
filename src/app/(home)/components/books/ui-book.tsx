@@ -9,7 +9,11 @@ interface Props {
 export default function UiBook({ nameBook }: Props) {
   return (
     <div className={style.book}>
-      <IconBook /> {nameBook}
+      <IconBook width="140px" height="180px" />
+      <div className={style.content_info_book}>
+        <h4>{nameBook}</h4>
+        <p className={style.description}>Description..</p>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function IconCode() {
+export function IconBookMain() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,8 +13,8 @@ export function IconCode() {
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="1.5"
-        d="M13.5 6L10 18.5m-3.5-10L3 12l3.5 3.5m11-7L21 12l-3.5 3.5"
+        strokeWidth="2"
+        d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"
       />
     </svg>
   );

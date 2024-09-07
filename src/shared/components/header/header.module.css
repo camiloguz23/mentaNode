@@ -8,4 +8,11 @@
   position: fixed;
   justify-content: space-between;
   padding: 0 20px;
+
+  .contentTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+  }
 }

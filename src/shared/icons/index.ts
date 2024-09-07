@@ -1,4 +1,5 @@
 export * from "./icon-bold";
+export * from "./icon-book-main";
 export * from "./icon-book";
 export * from "./icon-code";
 export * from "./icon-divider";

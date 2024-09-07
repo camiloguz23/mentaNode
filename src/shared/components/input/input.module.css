@@ -1,0 +1,22 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .title {
+    margin-bottom: 8px;
+  }
+
+  .input {
+    padding: 8px 12px;
+    border: 1px solid #616161;
+    border-radius: 8px;
+    font-size: 18px;
+
+    &:focus {
+      border: 1px solid #0f13e9;
+      outline: none;
+      box-shadow: 1px 4px 12px 1px rgba(28, 15, 219, 0.25);
+    }
+  }
+}

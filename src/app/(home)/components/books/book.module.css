@@ -1,14 +1,16 @@
 .book {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 6px 18px;
+  flex-direction: column;
+  padding: 12px 18px;
   font-size: 20px;
-  background-color: hsla(0, 80%, 50%, 0.3);
+  background-color: hsla(0, 80%, 90%, 0.3);
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 1px 4px 12px 1px rgba(0, 0, 0, 0.25);
   gap: 10px;
+  min-height: 300px;
+  width: 200px;
 
   @media (hover: hover) {
     &:hover {
@@ -16,6 +18,19 @@
       animation-duration: 0.5s;
       animation-iteration-count: infinite;
       animation-timing-function: ease-in-out;
+    }
+  }
+
+  .content_info_book {
+    margin-top: auto;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    .description {
+      font-size: 16px;
     }
   }
 }
