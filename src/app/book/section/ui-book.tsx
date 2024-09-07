@@ -4,19 +4,22 @@ import { useEditor, EditorContent, FloatingMenu } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
 import "./book.css";
 import Heading from "@tiptap/extension-heading";
-import CodeBlock from "@tiptap/extension-code-block";
 import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import Bold from "@tiptap/extension-bold";
 import { Color } from "@tiptap/extension-color";
 import Placeholder from "@tiptap/extension-placeholder";
+import CharacterCount from "@tiptap/extension-character-count";
 import TextStyle from "@tiptap/extension-text-style";
 import { MenuFloat, UiBtnBook } from "../components";
 import { useState } from "react";
 import { COLOR_TEXT } from "@/shared";
 import StarterKit from "@tiptap/starter-kit";
-import CharacterCount from "@tiptap/extension-character-count";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { all, createLowlight } from "lowlight";
+
+const lowlight = createLowlight(all);
 
 export function UiBook() {
   const editor = useEditor({
@@ -26,7 +29,6 @@ export function UiBook() {
       Heading,
       Paragraph,
       Text,
-      CodeBlock,
       HorizontalRule,
       Bold,
       Color,
@@ -34,8 +36,12 @@ export function UiBook() {
       Placeholder.configure({
         placeholder: "¡Dale vida a tus pensamientos! 💭 Comienza ahora",
       }),
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
+      CharacterCount,
     ],
-    autofocus: true,
+    autofocus: false,
     editable: true,
     injectCSS: false,
   });
@@ -56,7 +62,7 @@ export function UiBook() {
           editor.chain().focus().toggleHeading({ level }).run();
         }}
         isActiveCode={editor.isActive("codeBlock")}
-        onSelectCode={() => editor.chain().focus().toggleCodeBlock().run()}
+        onSelectCode={() => editor.commands.toggleCodeBlock()}
         onSelectDivider={() => editor.chain().focus().setHorizontalRule().run()}
         isActiveDivider={false}
         isBold={editor.isActive("bold")}
@@ -74,27 +80,23 @@ export function UiBook() {
         }}
       />
       <div className="mainBook">
-        {/* {(editor.storage.characterCount.words() ?? 0) > 0 && (
-          <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
-            <MenuFloat
-              isActiveH1={editor.isActive("heading", { level: 1 })}
-              isActiveH2={editor.isActive("heading", { level: 2 })}
-              isActiveH3={editor.isActive("heading", { level: 3 })}
-              onSelectHeading={(level) => {
-                editor.chain().focus().toggleHeading({ level }).run();
-              }}
-              selectColor={color}
-              onSelectColor={() => {
-                const valueColor =
-                  color === COLOR_TEXT.BLACK
-                    ? COLOR_TEXT.RED
-                    : COLOR_TEXT.BLACK;
-                setColor(valueColor);
-                editor.chain().focus().setColor(valueColor).run();
-              }}
-            />
-          </FloatingMenu>
-        )} */}
+        <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
+          <MenuFloat
+            isActiveH1={editor.isActive("heading", { level: 1 })}
+            isActiveH2={editor.isActive("heading", { level: 2 })}
+            isActiveH3={editor.isActive("heading", { level: 3 })}
+            onSelectHeading={(level) => {
+              editor.chain().focus().toggleHeading({ level }).run();
+            }}
+            selectColor={color}
+            onSelectColor={() => {
+              const valueColor =
+                color === COLOR_TEXT.BLACK ? COLOR_TEXT.RED : COLOR_TEXT.BLACK;
+              setColor(valueColor);
+              editor.chain().focus().setColor(valueColor).run();
+            }}
+          />
+        </FloatingMenu>
 
         <EditorContent
           editor={editor}
@@ -102,6 +104,7 @@ export function UiBook() {
             console.log(e);
           }}
         />
+        {editor.storage.characterCount?.words()}
       </div>
     </section>
   );

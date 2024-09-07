@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import { UiHeader } from "@/shared";
+import { UiHeader, UiProviders } from "@/shared";
 
 const inter = Roboto({
   subsets: ["latin"],
@@ -23,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <UiHeader />
-        <main className="main">{children}</main>
+        <UiProviders>
+          <UiHeader />
+          <main className="main">{children}</main>
+        </UiProviders>
       </body>
     </html>
   );
