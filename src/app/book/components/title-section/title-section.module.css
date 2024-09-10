@@ -1,0 +1,18 @@
+.title_content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 3px;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: hsla(0, 100%, 0%, 0.4);
+    color: white;
+  }
+
+  .active {
+    background-color: hsla(0, 100%, 0%, 0.1);
+    width: white;
+  }
+}

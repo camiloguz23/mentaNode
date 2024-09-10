@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function PageBook() {
-  return <UiBook />;
+  return <p>test</p>
 }

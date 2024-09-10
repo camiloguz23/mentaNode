@@ -1,12 +1,8 @@
-export interface SectionFromBookInterfaces {
-  titleSection: string;
-  content: string;
-}
 
 export interface BooksInterfaces {
   title: string;
   description: string;
-  section: SectionFromBookInterfaces[];
+  id: string;
 }
 
 export interface UserBooksInterfaces {

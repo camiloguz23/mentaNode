@@ -3,6 +3,12 @@ import { UserBooksInterfaces } from "../types";
 
 interface StoreInterface {
   books: UserBooksInterfaces;
+  setDataUser: (data: { name: string; email: string; img: string }) => void;
+  createBook: (body: {
+    title: string;
+    description: string;
+    id: string;
+  }) => void;
 }
 
 export const useBookStore = create<StoreInterface>((set) => ({
@@ -12,4 +18,28 @@ export const useBookStore = create<StoreInterface>((set) => ({
     img: "",
     books: [],
   },
+  setDataUser: (data) =>
+    set((state) => ({
+      books: {
+        ...state.books,
+        name: data.name,
+        email: data.email,
+        img: data.img,
+      },
+    })),
+  createBook: (body) =>
+    set((state) => ({
+      books: {
+        ...state.books,
+        books: [
+          ...state.books.books,
+          {
+            id: body.id,
+            title: body.title,
+            description: body.description,
+            section: [],
+          },
+        ],
+      },
+    })),
 }));
