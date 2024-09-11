@@ -17,6 +17,7 @@ export const useBookStore = create<StoreInterface>((set) => ({
     name: "",
     img: "",
     books: [],
+    section: [],
   },
   setDataUser: (data) =>
     set((state) => ({

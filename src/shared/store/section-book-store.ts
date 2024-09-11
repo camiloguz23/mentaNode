@@ -31,11 +31,11 @@ export const useSectionBookStore = create<StoreInterface>((set) => ({
         }
         return item;
       });
+
       return {
-        sections: {
-          ...state.sections,
-          section: newSection,
-        },
+        sections: state.sections.length
+          ? [...newSection]
+          : [{ idBook, section: [section] }],
       };
     }),
   onUpdateContent: (data) =>

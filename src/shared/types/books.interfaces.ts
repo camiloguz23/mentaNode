@@ -1,3 +1,4 @@
+import { SectionFromBookInterfaces } from "./section-book";
 
 export interface BooksInterfaces {
   title: string;
@@ -10,4 +11,5 @@ export interface UserBooksInterfaces {
   name: string;
   img: string;
   books: BooksInterfaces[];
+  section: SectionFromBookInterfaces[];
 }
