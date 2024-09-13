@@ -4,6 +4,7 @@ export * from "./icon-book";
 export * from "./icon-code";
 export * from "./icon-divider";
 export * from "./icon-document";
+export * from "./icon-google";
 export * from "./icon-head-1";
 export * from "./icon-head-2";
 export * from "./icon-head-3";

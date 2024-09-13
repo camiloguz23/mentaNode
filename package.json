@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.8.2",
+    "@clerk/nextjs": "^5.5.2",
     "@react-oauth/google": "^0.12.1",
     "@tiptap/extension-bold": "^2.6.6",
     "@tiptap/extension-character-count": "^2.6.6",
@@ -27,6 +29,7 @@
     "@tiptap/pm": "^2.6.6",
     "@tiptap/react": "^2.6.6",
     "@tiptap/starter-kit": "^2.6.6",
+    "convex": "^1.16.0",
     "jwt-decode": "^4.0.0",
     "lowlight": "^3.1.0",
     "next": "14.2.7",

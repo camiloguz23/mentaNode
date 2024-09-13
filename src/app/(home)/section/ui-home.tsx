@@ -3,22 +3,36 @@
 import React from "react";
 import style from "./home.module.css";
 import UiBook from "../components/books/ui-book";
-import { UiPopUp, useBookStore, useBoolean } from "@/shared";
+import {
+  UiPopUp,
+  useBookStore,
+  useBoolean,
+  UserBooksInterfaces,
+} from "@/shared";
 import { UiFormCreateBook } from "../components";
+import { useUser } from "@clerk/nextjs";
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
+import { json } from "stream/consumers";
 
 export function UiHome() {
   const openFormCreateBook = useBoolean();
   const { name, email, books } = useBookStore((store) => store.books);
+  const { user } = useUser();
+  const bookUser: UserBooksInterfaces = useQuery(api.query.getBooksUser, {
+    email: user?.emailAddresses[0].emailAddress ?? "",
+  });
   return (
     <section className={style.home}>
-      {name} {email}
+      {user?.firstName} {user?.fullName}{" "}
+      {user?.emailAddresses[0].emailAddress}
       <div className={style.sectionCreate}>
         <button className={style.btnCreate} onClick={openFormCreateBook.onTrue}>
           Crear Libreta
         </button>
       </div>
       <div className={style.contentBooks}>
-        {books.map((item) => (
+        {bookUser?.books.map((item) => (
           <UiBook
             key={item.id}
             nameBook={item.title}
