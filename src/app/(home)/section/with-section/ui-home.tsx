@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import style from "./home.module.css";
-import UiBook from "../components/books/ui-book";
+import UiBook from "../../components/books/ui-book";
 import {
   UiPopUp,
   useBookStore,
@@ -10,9 +10,9 @@ import {
   UserBooksInterfaces,
   UserDataGoogle,
 } from "@/shared";
-import { UiFormCreateBook } from "../components";
+import { UiFormCreateBook } from "../../components";
 import { useQuery } from "convex/react";
-import { api } from "../../../../convex/_generated/api";
+import { api } from "../../../../../convex/_generated/api";
 
 interface Props {
   userGoogle: UserDataGoogle | null;

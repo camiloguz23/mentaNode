@@ -8,4 +8,5 @@ export * from "./icon-google";
 export * from "./icon-head-1";
 export * from "./icon-head-2";
 export * from "./icon-head-3";
+export * from "./icon-pen";
 export * from "./icon-text-color";

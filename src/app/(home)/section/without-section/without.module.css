@@ -1,0 +1,96 @@
+.section_out {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  .welcome {
+    letter-spacing: -0.05em;
+    font-weight: 700;
+    font-size: 1.875rem;
+
+    @media (width >= 640px) {
+      font-size: 2.25rem;
+    }
+
+    @media (width >= 768px) {
+      font-size: 3rem;
+    }
+
+    @media (width >= 1024px) {
+      font-size: 3.75rem;
+    }
+  }
+
+  .description {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    color: #6b7280;
+    text-align: center;
+
+    @media (width >= 768px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  .section_info {
+    width: 100%; /* Ocupa el ancho completo */
+    padding-top: 3rem; /* 48px */
+    padding-bottom: 3rem; /* 48px */
+    background-image: linear-gradient(
+      to bottom right,
+      #faf5ff,
+      #ebf8ff
+    ); /* Gradiente de púrpura claro a azul claro */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title_info {
+      font-size: 1.875rem; /* 30px */
+      font-weight: 700; /* Bold */
+      letter-spacing: -0.05em; /* Tracking más apretado */
+      margin-bottom: 2rem; /* 32px */
+      text-align: center;
+      background-clip: text; /* Aplica el fondo solo al texto */
+      color: transparent; /* Texto transparente para mostrar el gradiente */
+      background-image: linear-gradient(to right, #7c3aed, #3b82f6);
+
+      @media (width >= 640px) {
+        font-size: 2.25rem;
+      }
+
+      @media (width >= 768px) {
+        font-size: 3rem; /* 36px */
+      }
+    }
+
+    .content_card {
+      width: 90%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+
+      .icon {
+        height: 3rem; /* Altura de 48px */
+        width: 3rem; /* Ancho de 48px */
+        margin-bottom: 1rem; /* Margen inferior de 16px */
+        color: var(
+          --primary
+        ); /* Color del icono, definido en tus variables CSS */
+      }
+
+      .title_card {
+        font-size: 1.25rem; /* Tamaño de texto de 20px */
+        font-weight: bold; /* Texto en negrita */
+        margin-bottom: 0.5rem; /* Margen inferior de 8px */
+      }
+
+      .description_card {
+        color: #6b7280; /* Color gris definido en tu configuración */
+      }
+    }
+  }
+}

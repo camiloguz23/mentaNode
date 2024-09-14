@@ -1,0 +1,17 @@
+.card {
+  display: flex; /* Disposición en flexbox */
+  flex-direction: column; /* Alinea los hijos en columna (verticalmente) */
+  align-items: center; /* Alinea los hijos en el centro en el eje horizontal */
+  text-align: center; /* Centra el texto dentro del div */
+  padding: 1.5rem; /* 24px de relleno interno en todos los lados */
+  background-color: white; /* Fondo blanco */
+  border-radius: 0.5rem; /* Bordes redondeados, 8px de radio */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
+  transition: all 0.3s ease; /* Transiciones en todos los cambios con duración de 300ms */
+  max-width: 300px;
+
+  &:hover {
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1); /* Sombra más intensa al hacer hover */
+    transform: translateY(-0.25rem); /* Desplaza hacia arriba 4px al hacer hover */
+  }
+}

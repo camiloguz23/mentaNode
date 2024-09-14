@@ -14,5 +14,10 @@
     align-items: center;
     gap: 10px;
     font-size: 20px;
+
+    .name {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
   }
 }
