@@ -1,56 +1,55 @@
 "use client";
 
 import React from "react";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
-import { IconGoogle, useBookStore } from "@/shared/store";
-import { useConvexAuth } from "convex/react";
-import {
-  SignInButton,
-  SignOutButton,
-  useAuth,
-  UserButton,
-} from "@clerk/nextjs";
+import {  useGoogleLogin } from "@react-oauth/google";
+import { encrypt, IconGoogle, useBookStore } from "@/shared/store";
 import style from "./google.module.css";
+import { setCookies } from "@/actions/cookies";
 
 export function BtnGoogle() {
-  const { setDataUser } = useBookStore((store) => store);
-  const { isAuthenticated, isLoading } = useConvexAuth();
-  const { sessionId } = useAuth();
+  const { setDataUser, books } = useBookStore((store) => store);
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      console.log(tokenResponse.access_token);
+      fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${tokenResponse.access_token}`, // Aquí va el Access Token
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Error al obtener los datos del usuario");
+          }
+          return response.json();
+        })
+        .then(async (data) => {
+          const token = await encrypt(data);
+          setCookies("token", token);
+          setDataUser({
+            name: data.name,
+            email: data.email,
+            img: data.picture,
+          });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    },
+  });
   return (
     <>
-      {!isAuthenticated && !isLoading && (
-        <SignInButton mode="modal">
-          <button className={style.login}>
-            <IconGoogle />
-            Iniciar Sesion
-          </button>
-        </SignInButton>
+      {!books.email ? (
+        <button className={style.login} onClick={() => login()}>
+          <IconGoogle />
+          Iniciar Sesion
+        </button>
+      ) : (
+        <button className={style.login}>
+          <IconGoogle />
+          Cerrar Sesion
+        </button>
       )}
-      {isAuthenticated && (
-        <SignOutButton
-          redirectUrl="/"
-          signOutOptions={{ sessionId: sessionId! }}
-        >
-          <button className={style.login}>
-            <IconGoogle />
-            Cerrar Sesion
-          </button>
-        </SignOutButton>
-      )}
-      {/* <GoogleLogin
-        onSuccess={(credentialResponse) => {
-          const data = jwtDecode(credentialResponse?.credential ?? "");
-          const { name, picture, email } = data as any;
-          setDataUser({ name, email, img: picture });
-        }}
-        onError={() => {
-          console.log("Login Failed");
-        }}
-        size="medium"
-        context="signin"
-        shape="circle"
-      /> */}
     </>
   );
 }

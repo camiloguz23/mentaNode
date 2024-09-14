@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./home.module.css";
 import UiBook from "../components/books/ui-book";
 import {
@@ -8,24 +8,35 @@ import {
   useBookStore,
   useBoolean,
   UserBooksInterfaces,
+  UserDataGoogle,
 } from "@/shared";
 import { UiFormCreateBook } from "../components";
-import { useUser } from "@clerk/nextjs";
 import { useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
-import { json } from "stream/consumers";
 
-export function UiHome() {
+interface Props {
+  userGoogle: UserDataGoogle | null;
+}
+
+export function UiHome({ userGoogle }: Props) {
   const openFormCreateBook = useBoolean();
-  const { name, email, books } = useBookStore((store) => store.books);
-  const { user } = useUser();
-  const bookUser: UserBooksInterfaces = useQuery(api.query.getBooksUser, {
-    email: user?.emailAddresses[0].emailAddress ?? "",
-  });
+  const { setDataUser } = useBookStore((store) => store);
+  const bookUser: UserBooksInterfaces | undefined | null = useQuery(
+    api.query.getBooksUser,
+    {
+      email: userGoogle?.email ?? "",
+    }
+  );
+  useEffect(() => {
+    setDataUser({
+      name: userGoogle?.name ?? "",
+      email: userGoogle?.email ?? "",
+      img: userGoogle?.picture ?? "",
+    });
+  }, [userGoogle]);
+
   return (
     <section className={style.home}>
-      {user?.firstName} {user?.fullName}{" "}
-      {user?.emailAddresses[0].emailAddress}
       <div className={style.sectionCreate}>
         <button className={style.btnCreate} onClick={openFormCreateBook.onTrue}>
           Crear Libreta
