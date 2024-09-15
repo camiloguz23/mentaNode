@@ -30,6 +30,8 @@ export function UiFormCreateBook({ onClose }: Props) {
           title: values.nameBook,
           idBook: crypto.randomUUID(),
           email: books?.email ?? "",
+        }).then(() => {
+          onClose();
         });
       }}
     >

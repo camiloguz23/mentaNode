@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import style from "./home.module.css";
 import UiBook from "../../components/books/ui-book";
 import {
+  IconPlus,
   UiPopUp,
   useBookStore,
   useBoolean,
@@ -37,11 +38,10 @@ export function UiHome({ userGoogle }: Props) {
 
   return (
     <section className={style.home}>
-      <div className={style.sectionCreate}>
-        <button className={style.btnCreate} onClick={openFormCreateBook.onTrue}>
-          Crear Libreta
-        </button>
-      </div>
+      <button className={style.btnCreate} onClick={openFormCreateBook.onTrue}>
+        <IconPlus className={"icon"} />
+      </button>
+
       <div className={style.contentBooks}>
         {bookUser?.books.map((item) => (
           <UiBook
@@ -54,9 +54,7 @@ export function UiHome({ userGoogle }: Props) {
       </div>
       {openFormCreateBook.value && (
         <UiPopUp>
-          <UiFormCreateBook
-            onClose={openFormCreateBook.onFalse}
-          />
+          <UiFormCreateBook onClose={openFormCreateBook.onFalse} />
         </UiPopUp>
       )}
     </section>

@@ -1,3 +1,4 @@
+export * from "./icon-arrow-right";
 export * from "./icon-bold";
 export * from "./icon-book-main";
 export * from "./icon-book";
@@ -9,4 +10,5 @@ export * from "./icon-head-1";
 export * from "./icon-head-2";
 export * from "./icon-head-3";
 export * from "./icon-pen";
+export * from "./icon-plus";
 export * from "./icon-text-color";

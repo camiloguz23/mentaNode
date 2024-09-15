@@ -1,31 +1,39 @@
 .home {
   padding-inline: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
-  .sectionCreate {
+  .btnCreate {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: end;
-    gap: 20px;
-    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 
-    .btnCreate {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      border-radius: 8px ;
-      cursor: pointer;
-      box-shadow: 1px 4px 12px 1px rgba(0, 0, 0, 0.25);
-      padding: 4px 14px;
-      border: none;
-      outline: none;
+    @media (hover: hover) {
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 
   .contentBooks {
     display: flex;
-    gap: 40px;
+    gap: 20px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
   }
 }
