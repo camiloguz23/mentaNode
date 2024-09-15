@@ -25,21 +25,6 @@ export function WithoutSection() {
               icon: "M9 11l3 3L22 4",
             },
             {
-              title: "Notas de voz",
-              desc: "Graba tus ideas sobre la marcha con notas de audio integradas.",
-              icon: "M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z",
-            },
-            {
-              title: "Dibujos y bocetos",
-              desc: "Expresa tus ideas visualmente con herramientas de dibujo integradas.",
-              icon: "M12 19l7-7 3 3-7 7-3-3z",
-            },
-            {
-              title: "Notas matemáticas",
-              desc: "Crea ecuaciones y fórmulas con nuestro editor de matemáticas LaTeX.",
-              icon: "M23 12l-7-7v5H4v4h12v5z",
-            },
-            {
               title: "Notas de código",
               desc: "Escribe y formatea código con resaltado de sintaxis para múltiples lenguajes.",
               icon: "M16 18l6-6-6-6M8 6l-6 6 6 6",

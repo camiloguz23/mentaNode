@@ -23,4 +23,10 @@ export default defineSchema({
       })
     ),
   }),
+  user: defineTable({
+    email: v.string(),
+    img: v.string(),
+    name: v.string(),
+    typeLogin: v.string(),
+  }),
 });

@@ -1,16 +1,15 @@
 "use client";
 
 import React from "react";
-import {  useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import { encrypt, IconGoogle, useBookStore } from "@/shared/store";
 import style from "./google.module.css";
-import { setCookies } from "@/actions/cookies";
+import { deleteCookie, setCookies } from "@/actions/cookies";
 
 export function BtnGoogle() {
   const { setDataUser, books } = useBookStore((store) => store);
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
-      console.log(tokenResponse.access_token);
       fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
         method: "GET",
         headers: {
@@ -45,7 +44,12 @@ export function BtnGoogle() {
           Iniciar Sesion
         </button>
       ) : (
-        <button className={style.login}>
+        <button
+          className={style.login}
+          onClick={() => {
+            deleteCookie("token");
+          }}
+        >
           <IconGoogle />
           Cerrar Sesion
         </button>

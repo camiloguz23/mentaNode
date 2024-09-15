@@ -3,13 +3,16 @@
 import { UiInput, useBookStore } from "@/shared";
 import React from "react";
 import style from "./form-create.module.css";
+import { useMutation } from "convex/react";
+import { api } from "../../../../../convex/_generated/api";
 
 interface Props {
   onClose: () => void;
 }
 
 export function UiFormCreateBook({ onClose }: Props) {
-  const { createBook } = useBookStore((store) => store);
+  const onAddNewBook = useMutation(api.query.addNewBook);
+  const { createBook, books } = useBookStore((store) => store);
   return (
     <form
       className={style.form}
@@ -22,10 +25,11 @@ export function UiFormCreateBook({ onClose }: Props) {
             descriptionBook: string;
           };
 
-        createBook({
+        onAddNewBook({
           description: values.descriptionBook,
           title: values.nameBook,
-          id: crypto.randomUUID(),
+          idBook: crypto.randomUUID(),
+          email: books?.email ?? "",
         });
       }}
     >

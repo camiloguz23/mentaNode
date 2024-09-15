@@ -11,11 +11,11 @@ import {
   UserDataGoogle,
 } from "@/shared";
 import { UiFormCreateBook } from "../../components";
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
 
 interface Props {
-  userGoogle: UserDataGoogle | null;
+  userGoogle: UserDataGoogle;
 }
 
 export function UiHome({ userGoogle }: Props) {
@@ -54,7 +54,9 @@ export function UiHome({ userGoogle }: Props) {
       </div>
       {openFormCreateBook.value && (
         <UiPopUp>
-          <UiFormCreateBook onClose={openFormCreateBook.onFalse} />
+          <UiFormCreateBook
+            onClose={openFormCreateBook.onFalse}
+          />
         </UiPopUp>
       )}
     </section>
