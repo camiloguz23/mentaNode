@@ -5,9 +5,11 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { encrypt, IconGoogle, useBookStore } from "@/shared/store";
 import style from "./google.module.css";
 import { deleteCookie, setCookies } from "@/actions/cookies";
+import { useRouter } from "next/navigation";
 
 export function BtnGoogle() {
   const { setDataUser, books } = useBookStore((store) => store);
+  const route = useRouter();
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
@@ -29,6 +31,7 @@ export function BtnGoogle() {
             name: data.name,
             email: data.email,
             img: data.picture,
+            section: [],
           });
         })
         .catch((error) => {
@@ -46,8 +49,9 @@ export function BtnGoogle() {
       ) : (
         <button
           className={style.login}
-          onClick={() => {
-            deleteCookie("token");
+          onClick={async () => {
+            const routeBack = await deleteCookie("token");
+            route.push(routeBack);
           }}
         >
           <IconGoogle />

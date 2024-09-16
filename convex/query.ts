@@ -40,3 +40,30 @@ export const addNewBook = mutation({
     return newBook;
   },
 });
+
+export const createPage = mutation({
+  args: {
+    body: v.object({
+      id: v.string(),
+      content: v.string(),
+      titleSection: v.string(),
+      idBook: v.string(),
+    }),
+    email: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const { body, email } = args;
+    const book = await ctx.db
+      .query("books")
+      .filter((b) => b.eq(b.field("email"), email))
+      .unique();
+    if (!book) {
+      return;
+    }
+    const id = book._id;
+    const newBook = book?.section.map((item) => item);
+    newBook?.push(body);
+    await ctx.db.patch(id, { section: newBook });
+    return newBook;
+  },
+});

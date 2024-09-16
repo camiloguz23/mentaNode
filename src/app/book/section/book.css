@@ -1,8 +1,8 @@
 /* Basic editor styles */
 .tiptap {
   border: none;
-  padding: 10px;
-  min-height: 75dvb;
+  padding: 4px;
+  min-height: 70dvb;
   &:first-child {
     border: none;
     outline: none;
@@ -114,19 +114,97 @@
 .section-book-main {
   display: grid;
   grid:
-    "label content" 1fr
-    /300px 1fr;
-  gap: 10px;
+    "label" 90px
+    "content" 1fr
+    / 1fr;
+  gap: 6px;
   width: 100%;
-  margin-top: 40px;
 
   .label {
     grid-area: label;
     display: flex;
-    flex-direction: column;
     gap: 10px;
     border-right: 1px solid #616161;
     padding: 4px 12px;
+    align-items: center;
+    padding: 0 20px;
+
+    .modal {
+      position: relative;
+
+      .createPage {
+        position: absolute;
+        bottom: -50px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 6px;
+        padding: 8px 10px;
+        border: 1px solid #9c999971;
+        background-color: white;
+        width: 350px;
+        clip-path: circle(0% at bottom right);
+
+        &.open {
+          opacity: 1;
+          transition: transform 0.2s ease-out; /* Adjust duration as needed */
+          animation: openCircle linear 1s;
+          clip-path: circle(151% at bottom right);
+        }
+
+        &.close {
+          /* Adjusted based on your content width */
+          transition: transform 1s ease-in-out;
+          transition-delay: 1s; /* Adjust duration as needed */
+          clip-path: circle(0% at bottom right);
+          animation: closeCircle linear 1s;
+        }
+
+        &.init {
+          clip-path: circle(0% at bottom right);
+        }
+
+        .input {
+          border: none;
+          outline: none;
+          font-size: 16px;
+          width: 100%;
+        }
+
+        .btn_save {
+          border: 1px solid #9c999971;
+          border-radius: 6px;
+          padding: 4px 10px;
+          width: 100px;
+          cursor: pointer;
+          background-color: #1f1e1e;
+          color: white;
+          font-size: 1rem;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .btnCreate {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 6px;
+      transition:
+        0,
+        5 ease;
+      cursor: pointer;
+      padding: 4px 10px;
+      border: 1px solid #9c999971;
+
+      &:hover {
+        box-shadow:
+          1px 4px 12px rgba(0, 0, 0, 0.25),
+          0 4px 8px rgba(0, 0, 0, 0.25);
+        transform: scale(1.05);
+      }
+    }
   }
 
   .content_label {
@@ -147,5 +225,23 @@ ol {
   li p {
     margin-top: 0.25em;
     margin-bottom: 0.25em;
+  }
+}
+
+@keyframes openCircle {
+  from {
+    clip-path: circle(0% at bottom right);
+  }
+  to {
+    clip-path: circle(151% at bottom right);
+  }
+}
+
+@keyframes closeCircle {
+  from {
+    clip-path: circle(151% at bottom right);
+  }
+  to {
+    clip-path: circle(0% at bottom right);
   }
 }

@@ -20,6 +20,7 @@ export default defineSchema({
         content: v.string(),
         id: v.string(),
         titleSection: v.string(),
+        idBook: v.string(),
       })
     ),
   }),

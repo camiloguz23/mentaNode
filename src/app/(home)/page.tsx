@@ -13,7 +13,7 @@ export default async function Home() {
   const dataUser: UserDataGoogle | null = (await decryptAndVerify(
     cookie.get("token")?.value ?? ""
   )) as unknown as UserDataGoogle;
-
+  console.log("home", dataUser, "cookie", cookie.get("token")?.value);
   return (
     <>{dataUser ? <UiHome userGoogle={dataUser} /> : <WithoutSection />}</>
   );

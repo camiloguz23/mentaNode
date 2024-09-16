@@ -12,18 +12,20 @@ import { Color } from "@tiptap/extension-color";
 import Placeholder from "@tiptap/extension-placeholder";
 import CharacterCount from "@tiptap/extension-character-count";
 import TextStyle from "@tiptap/extension-text-style";
-import { MenuFloat, UiBtnBook, UiTitleSection } from "../components";
+import { MenuFloat, UiBtnBook } from "../components";
 import { useState } from "react";
 import {
   COLOR_TEXT,
-  UiPopUp,
+  IconPlus,
+  UiSelect,
   useBookStore,
   useBoolean,
-  useSectionBookStore,
 } from "@/shared";
 import StarterKit from "@tiptap/starter-kit";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
+import { useMutation } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 
 const lowlight = createLowlight(all);
 
@@ -32,12 +34,13 @@ interface Props {
 }
 
 export function UiBook({ id }: Props) {
-  const { books } = useBookStore((store) => store.books);
-  const { onCreateSection, sections } = useSectionBookStore((store) => store);
-  const openFormCreateSection = useBoolean();
+  const { section, email } = useBookStore((store) => store.books);
+  const onCreatePage = useMutation(api.query.createPage);
+  const openCreatePage = useBoolean();
+  const [openStyle, setOpenStyle] = useState<string>("init");
+  const [titlePage, setTitlePage] = useState<string>("");
   const editor = useEditor({
     extensions: [
-      StarterKit,
       Document,
       Heading,
       Paragraph,
@@ -69,33 +72,69 @@ export function UiBook({ id }: Props) {
     <>
       <section className="section-book-main">
         <section className={"label"}>
-          <p>{books.find((item) => item.id === id)?.title ?? "no hay"}</p>
-          <button
-            onClick={() => {
-              onCreateSection({
-                idBook: id,
-                section: {
-                  content: "",
-                  id: crypto.randomUUID(),
-                  titleSection: "Sin Titulo",
-                },
-              });
-            }}
-          >
-            Crear titulo
-          </button>
-          {sections
-            .find((item) => item.idBook === id)
-            ?.section.map((item) => (
-              <UiTitleSection
-                key={item.id}
-                idBooK={id}
-                idSection={item.id}
-                title={item.titleSection}
-              />
-            ))}
-        </section>
-        <section className="content_label">
+          <UiSelect
+            label="Paginas"
+            options={section.map((item) => ({
+              label: item.titleSection,
+              value: item.id,
+            }))}
+          />
+          <div className="modal">
+            <button
+              className={"btnCreate"}
+              onClick={() => {
+                console.log(openCreatePage.value);
+
+                if (openCreatePage.value) {
+                  setTimeout(() => {
+                    openCreatePage.onFalse();
+                    console.log("close");
+                  }, 1100);
+
+                  setOpenStyle("close");
+                } else {
+                  openCreatePage.onTrue();
+                  setOpenStyle("open");
+                }
+              }}
+            >
+              <IconPlus className="icon" /> crear Pagina
+            </button>
+            {openCreatePage.value && (
+              <div className={`createPage ${openStyle}`}>
+                <input
+                  type="text"
+                  placeholder="Nombre de la pagina"
+                  className="input"
+                  value={titlePage}
+                  onChange={(e) => setTitlePage(e.target.value)}
+                />
+                <button
+                  className="btn_save"
+                  onClick={() => {
+                    onCreatePage({
+                      body: {
+                        content: "",
+                        idBook: id,
+                        titleSection: titlePage,
+                        id: crypto.randomUUID(),
+                      },
+                      email: email,
+                    }).then(() => {
+                      setTimeout(() => {
+                        openCreatePage.onFalse();
+                        console.log("close");
+                      }, 1100);
+
+                      setOpenStyle("close");
+                    });
+                  }}
+                >
+                  Guardar
+                </button>
+              </div>
+            )}
+          </div>
           <UiBtnBook
             isActiveH1={editor.isActive("heading", { level: 1 })}
             isActiveH2={editor.isActive("heading", { level: 2 })}
@@ -123,6 +162,8 @@ export function UiBook({ id }: Props) {
               editor.chain().focus().setColor(valueColor).run();
             }}
           />
+        </section>
+        <section className="content_label">
           <div className="mainBook">
             <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
               <MenuFloat
@@ -150,7 +191,6 @@ export function UiBook({ id }: Props) {
                 console.log(e);
               }}
             />
-            {editor.storage.characterCount?.words()}
           </div>
         </section>
       </section>

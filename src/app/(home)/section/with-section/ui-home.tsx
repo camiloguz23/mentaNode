@@ -33,8 +33,9 @@ export function UiHome({ userGoogle }: Props) {
       name: userGoogle?.name ?? "",
       email: userGoogle?.email ?? "",
       img: userGoogle?.picture ?? "",
+      section: bookUser?.section ?? [],
     });
-  }, [userGoogle]);
+  }, [userGoogle, bookUser]);
 
   return (
     <section className={style.home}>

@@ -18,6 +18,7 @@ export const getCookie = (key: string) => {
   return value?.value;
 };
 
-export const deleteCookie = (key: string) => {
+export const deleteCookie = async (key: string) => {
   cookies().delete(key);
+  return "/";
 };

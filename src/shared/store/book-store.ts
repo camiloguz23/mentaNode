@@ -1,6 +1,6 @@
 import { Id } from "./../../../convex/_generated/dataModel.d";
 import { create } from "zustand";
-import { UserBooksInterfaces } from "../types";
+import { SectionFromBookInterfaces, UserBooksInterfaces } from "../types";
 
 interface StoreInterface {
   books: UserBooksInterfaces;
@@ -8,6 +8,7 @@ interface StoreInterface {
     name: string;
     email: string;
     img: string;
+    section: SectionFromBookInterfaces[];
   }) => void;
   createBook: (body: {
     title: string;
@@ -32,6 +33,7 @@ export const useBookStore = create<StoreInterface>((set) => ({
         name: data.name,
         email: data.email,
         img: data.img,
+        section: data.section,
       },
     })),
   createBook: (body) =>
