@@ -30,6 +30,8 @@
 
   .content_info_book {
     padding: 0.75rem;
+    text-decoration: none;
+    display: block;
 
     .description {
       font-size: 0.75rem;

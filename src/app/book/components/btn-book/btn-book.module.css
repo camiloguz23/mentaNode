@@ -2,39 +2,52 @@
   display: flex;
   align-items: center;
   padding: 6px;
-  width: 60%;
+  width: fit-content;
   justify-content: center;
   gap: 20px;
   border-radius: 8px;
-  background-color: hsla(0, 100%, 100%, 0.1);
-  backdrop-filter: blur(10px);
   position: fixed;
-  top: 90px;
+  top: 120px;
+  right: 20px;
   height: 50px;
+  z-index: 0;
+
+  @media (width <= 679px) {
+    top: 170px;
+    right: 0;
+    left: 20px;
+    gap: 4px;
+  }
 
   .btn-book {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    border-radius: 50%;
+    font-size: 26px;
+    border-radius: 12px;
     cursor: pointer;
     box-shadow: 1px 4px 12px 1px rgba(0, 0, 0, 0.25);
     transition: 0.5s;
+    padding: 8px;
+    border: 1px solid #9c999971;
+    @media (width <= 679px) {
+      font-size: 22px;
+    }
 
     &.active {
       background-color: hsla(130, 70%, 50%, 0.7);
     }
 
     &.textcolor {
-      border: none;
       outline: none;
-      box-shadow: none;
     }
 
     @media (hover: hover) {
       &:hover {
         transform: scale(1.1);
+        box-shadow:
+          1px 4px 12px  rgba(0, 0, 0, 0.25),
+          0px 4px 12px  rgba(0, 0, 0, 0.25);
       }
     }
   }

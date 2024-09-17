@@ -67,3 +67,28 @@ export const createPage = mutation({
     return newBook;
   },
 });
+
+export const saveContent = mutation({
+  args: {
+    content: v.string(),
+    idPage: v.string(),
+    email: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const { content, email, idPage } = args;
+    const book = await ctx.db
+      .query("books")
+      .filter((b) => b.eq(b.field("email"), email))
+      .unique();
+    if (!book) {
+      return;
+    }
+    const id = book._id;
+    const updateContentPage = book?.section.map((item) => item);
+    const addContent = updateContentPage?.map((item) => {
+      return item.id === idPage ? { ...item, content } : item;
+    });
+
+    await ctx.db.patch(id, { section: addContent });
+  },
+});

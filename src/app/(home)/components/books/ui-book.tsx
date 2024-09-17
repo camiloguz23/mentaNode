@@ -4,6 +4,7 @@ import { IconArrowRight, IconBook } from "@/shared";
 import React from "react";
 import style from "./book.module.css";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface Props {
   nameBook: string;
@@ -18,15 +19,12 @@ export default function UiBook({ nameBook, description, id }: Props) {
       <div className={style.card_header}>
         <h4 className={style.title_card}>{nameBook}</h4>
       </div>
-      <div className={style.content_info_book}>
+      <Link className={style.content_info_book} href={`/book/${id}`}>
         <p className={style.description}>{description}</p>
-        <button
-          className={style.btn_open}
-          onClick={() => route.push(`/book/${id}`)}
-        >
+        <button className={style.btn_open}>
           abrir <IconArrowRight className={style.icon} />
         </button>
-      </div>
+      </Link>
     </div>
   );
 }

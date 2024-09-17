@@ -33,6 +33,9 @@ export default async function RootLayout({
   )) as unknown as UserDataGoogle;
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <link rel="icon" href="public/Empty.png" type="any" />
+      </head>
       <body>
         <UiProviders>
           <SetStoreProvider userGoogle={dataUser}>
