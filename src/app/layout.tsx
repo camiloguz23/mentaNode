@@ -34,7 +34,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <link rel="icon" href="public/Empty.png" type="any" />
+        <link rel="icon" href="public/vercel.svg" type="any" />
       </head>
       <body>
         <UiProviders>

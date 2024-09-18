@@ -1,6 +1,43 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
+export const onAddUser = mutation({
+  args: {
+    email: v.string(),
+    type: v.string(),
+    name: v.string(),
+    img: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const { email, type, name, img } = args;
+    const user = await ctx.db
+      .query("books")
+      .filter((u) => u.eq(u.field("email"), email))
+      .unique();
+    if (!user?.email) {
+      const useID = await ctx.db.insert("user", {
+        email: email,
+        name,
+        img,
+        typeLogin: type,
+      });
+      const bookUser = await ctx.db.insert("books", {
+        email,
+        section: [],
+        books: [],
+        name,
+        img,
+      });
+      const user = await ctx.db
+        .query("books")
+        .filter((u) => u.eq(u.field("_id"), bookUser))
+        .unique();
+      return user;
+    }
+    return user;
+  },
+});
+
 export const getBooksUser = query({
   args: {
     email: v.string(),

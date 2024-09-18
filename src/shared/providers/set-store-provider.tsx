@@ -21,14 +21,14 @@ export function SetStoreProvider({ children, userGoogle }: Props) {
   );
 
   useEffect(() => {
-    console.log("provider convex", bookUser);
+   
     setDataUser({
       name: userGoogle?.name ?? "",
       email: userGoogle?.email ?? "",
       img: userGoogle?.picture ?? "",
       section: bookUser?.section ?? [],
     });
-  }, [userGoogle, bookUser]);
+  }, [userGoogle, bookUser, setDataUser]);
 
   return <>{children}</>;
 }

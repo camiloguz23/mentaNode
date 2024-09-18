@@ -6,9 +6,12 @@ import { encrypt, IconGoogle, useBookStore } from "@/shared/store";
 import style from "./google.module.css";
 import { deleteCookie, setCookies } from "@/actions/cookies";
 import { useRouter } from "next/navigation";
+import { useMutation } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 
 export function BtnGoogle() {
   const { setDataUser, books } = useBookStore((store) => store);
+  const onLoginRegisterUser = useMutation(api.query.onAddUser);
   const route = useRouter();
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
@@ -27,15 +30,22 @@ export function BtnGoogle() {
         .then(async (data) => {
           const token = await encrypt(data);
           setCookies("token", token);
+          const user = await onLoginRegisterUser({
+            name: data.name,
+            email: data.email,
+            img: data.picture,
+            type: "google",
+          });
+
           setDataUser({
             name: data.name,
             email: data.email,
             img: data.picture,
-            section: [],
+            section: user?.section ?? [],
           });
         })
-        .catch((error) => {
-          console.error("Error:", error);
+        .catch(() => {
+          throw new Error("error en el login");
         });
     },
   });

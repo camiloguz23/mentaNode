@@ -19,7 +19,7 @@ export default function UiBook({ nameBook, description, id }: Props) {
       <div className={style.card_header}>
         <h4 className={style.title_card}>{nameBook}</h4>
       </div>
-      <Link className={style.content_info_book} href={`/book/${id}`}>
+      <Link className={style.content_info_book} href={`/book/${id}`} prefetch={true}>
         <p className={style.description}>{description}</p>
         <button className={style.btn_open}>
           abrir <IconArrowRight className={style.icon} />

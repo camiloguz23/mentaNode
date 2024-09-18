@@ -5,6 +5,7 @@ import style from "./home.module.css";
 import UiBook from "../../components/books/ui-book";
 import {
   IconPlus,
+  UiEmpty,
   UiPopUp,
   useBookStore,
   useBoolean,
@@ -44,6 +45,7 @@ export function UiHome({ userGoogle }: Props) {
       </button>
 
       <div className={style.contentBooks}>
+        {!bookUser?.books.length && <UiEmpty message="No hay libros" />}
         {bookUser?.books.map((item) => (
           <UiBook
             key={item.id}

@@ -10,7 +10,7 @@ import {
   useBoolean,
 } from "@/shared";
 import { useMutation } from "convex/react";
-import { api } from "../../../../convex/_generated/api";
+import { api } from "../../../../../convex/_generated/api";
 import { CodeCustom } from "@/shared/components/editor-text/code-custom/code-custom";
 
 interface Props {
@@ -50,8 +50,6 @@ export function UiBook({ id }: Props) {
             <button
               className={"btnCreate"}
               onClick={() => {
-                console.log(openCreatePage.value);
-
                 if (openCreatePage.value) {
                   setTimeout(() => {
                     openCreatePage.onFalse();
@@ -89,7 +87,6 @@ export function UiBook({ id }: Props) {
                     }).then(() => {
                       setTimeout(() => {
                         openCreatePage.onFalse();
-                        console.log("close");
                       }, 1100);
 
                       setOpenStyle("close");
