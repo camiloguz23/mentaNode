@@ -13,12 +13,9 @@ import { Color } from "@tiptap/extension-color";
 import Placeholder from "@tiptap/extension-placeholder";
 import CharacterCount from "@tiptap/extension-character-count";
 import TextStyle from "@tiptap/extension-text-style";
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import { all, createLowlight } from "lowlight";
 import { UiBtnBook } from "@/app/book/components";
 import { COLOR_TEXT } from "@/shared/constants";
-
-const lowlight = createLowlight(all);
+import CodeBlock from '@tiptap/extension-code-block'
 
 interface Props {
   onChange: (value: string) => void;
@@ -41,9 +38,7 @@ export function CodeCustom({ onChange, editable, initContent }: Props) {
       Placeholder.configure({
         placeholder: "¡Dale vida a tus pensamientos! 💭 Comienza ahora",
       }),
-      CodeBlockLowlight.configure({
-        lowlight,
-      }),
+      CodeBlock,
       CharacterCount,
     ],
     autofocus: false,
