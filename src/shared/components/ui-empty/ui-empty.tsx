@@ -9,7 +9,7 @@ interface Props {
 export function UiEmpty({ message }: Props) {
   return (
     <div className={style.empty}>
-      <IconEmpty />
+      <IconEmpty className={style.icon} />
       <p className={style.message}>{message}</p>
     </div>
   );

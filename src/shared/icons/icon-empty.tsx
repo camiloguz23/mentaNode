@@ -1,14 +1,17 @@
 import React from "react";
 
-export function IconEmpty() {
+interface Props {
+  className:string
+}
+
+export function IconEmpty({className}:Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
-      width="662.70323"
-      height="444.78592"
       viewBox="0 0 862.70323 644.78592"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      className={className}
     >
       <polygon
         points="629.943 612.644 612.777 612.644 604.608 546.435 629.943 546.435 629.943 612.644"
