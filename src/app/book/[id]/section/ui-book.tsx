@@ -33,10 +33,12 @@ export function UiBook({ id }: Props) {
         <section className={"label"}>
           <UiSelect
             label="Paginas"
-            options={section.map((item) => ({
-              label: item.titleSection,
-              value: item.id,
-            }))}
+            options={section
+              .filter((item) => item.idBook === id)
+              .map((item) => ({
+                label: item.titleSection,
+                value: item.id,
+              }))}
             onSelect={(value) => {
               changePage.onTrue();
 
