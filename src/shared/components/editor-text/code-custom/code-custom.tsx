@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
@@ -64,7 +65,7 @@ export function CodeCustom({ onChange, editable, initContent }: Props) {
           editor.chain().focus().toggleHeading({ level }).run();
         }}
         isActiveCode={editor.isActive("codeBlock")}
-        onSelectCode={() => editor.commands.toggleCodeBlock()}
+        onSelectCode={() => editor.chain().focus().toggleCodeBlock().run()}
         onSelectDivider={() => editor.chain().focus().setHorizontalRule().run()}
         isActiveDivider={false}
         isBold={editor.isActive("bold")}
