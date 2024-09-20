@@ -24,6 +24,25 @@
     margin: 2rem 0;
   }
 
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+
   pre {
     background: #1f1e1e;
     border-radius: 0.5rem;
@@ -111,19 +130,4 @@ ol {
     margin-top: 0.25em;
     margin-bottom: 0.25em;
   }
-}
-
-h1 {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 1.6rem;
-  font-weight: 500;
-}
-
-h3 {
-  font-size: 1.2rem;
-  font-weight: 500;
 }
