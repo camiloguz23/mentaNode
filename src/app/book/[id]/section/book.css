@@ -3,6 +3,17 @@
   border: none;
   padding: 4px;
   min-height: 70dvb;
+
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 26px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+
   &:first-child {
     border: none;
     outline: none;
@@ -23,6 +34,11 @@
     border: none;
     border-top: 1px solid #616161;
     margin: 2rem 0;
+  }
+
+  p {
+    text-wrap: wrap;
+    font-size: 20px;
   }
 
   pre {
@@ -135,7 +151,7 @@
     position: fixed;
     top: 120px;
     width: 100%;
-    background-color: hsla(0, 100%, 100%, 0.3);
+    background-color: hsla(0, 100%, 100%, 0.6);
     backdrop-filter: blur(5px);
 
     .modal {
@@ -223,6 +239,11 @@
     gap: 10px;
     justify-content: center;
     align-items: center;
+    max-width: 94vw;
+
+    /* @media (width >= 1080px) {
+      width: 1200px;
+    } */
   }
 }
 
