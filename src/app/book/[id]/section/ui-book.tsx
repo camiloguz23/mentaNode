@@ -3,6 +3,7 @@
 import "./book.css";
 import { useState } from "react";
 import {
+  CodeCustom,
   IconPlus,
   UiEmpty,
   UiSelect,
@@ -12,7 +13,6 @@ import {
 } from "@/shared";
 import { useMutation } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
-import { CodeCustom } from "@/shared/components/editor-text/code-custom/code-custom";
 
 interface Props {
   id: string;

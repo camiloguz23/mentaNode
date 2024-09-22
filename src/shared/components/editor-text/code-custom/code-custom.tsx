@@ -13,13 +13,13 @@ import { Color } from "@tiptap/extension-color";
 import Placeholder from "@tiptap/extension-placeholder";
 import CharacterCount from "@tiptap/extension-character-count";
 import TextStyle from "@tiptap/extension-text-style";
-import { UiBtnBook } from "@/app/book/[id]/components";
 import { COLOR_TEXT } from "@/shared/constants";
 import CodeBlock from "@tiptap/extension-code-block";
 import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
+import { UiBtnBook } from "./components";
 
 interface Props {
   onChange: (value: string) => void;
@@ -87,9 +87,7 @@ export function CodeCustom({ onChange, editable, initContent }: Props) {
           editor.chain().focus().setColor(valueColor).run();
         }}
         onActionTable={(action) => {
-          console.log(action);
           if (action === "create") {
-            console.log("create");
             editor
               .chain()
               .focus()
@@ -97,7 +95,6 @@ export function CodeCustom({ onChange, editable, initContent }: Props) {
               .run();
           }
           if (action === "row") {
-            console.log("row");
             editor.chain().focus().addRowAfter().run();
           }
           if (action === "column") {
