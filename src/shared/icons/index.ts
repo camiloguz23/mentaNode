@@ -1,3 +1,6 @@
+export * from "./icon-add-column";
+export * from "./icon-add-row";
+export * from "./icon-add-table";
 export * from "./icon-arrow-right";
 export * from "./icon-bold";
 export * from "./icon-book-main";
@@ -14,5 +17,6 @@ export * from "./icon-head-2";
 export * from "./icon-head-3";
 export * from "./icon-pen";
 export * from "./icon-plus";
+export * from "./icon-table";
 export * from "./icon-text-color";
 export * from "./icon-up";

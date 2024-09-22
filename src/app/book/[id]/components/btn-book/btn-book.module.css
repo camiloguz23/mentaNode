@@ -10,7 +10,7 @@
   top: 120px;
   right: 20px;
   height: 50px;
-  z-index: 0;
+  z-index: 10;
   background-color: hsla(0, 100%, 100%, 0.7);
   backdrop-filter: blur(5px);
 

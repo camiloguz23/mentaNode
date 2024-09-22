@@ -16,6 +16,10 @@ import TextStyle from "@tiptap/extension-text-style";
 import { UiBtnBook } from "@/app/book/[id]/components";
 import { COLOR_TEXT } from "@/shared/constants";
 import CodeBlock from "@tiptap/extension-code-block";
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
 
 interface Props {
   onChange: (value: string) => void;
@@ -40,6 +44,12 @@ export function CodeCustom({ onChange, editable, initContent }: Props) {
       }),
       CodeBlock,
       CharacterCount,
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableHeader,
+      TableCell,
     ],
     autofocus: false,
     editable: true,
@@ -75,6 +85,24 @@ export function CodeCustom({ onChange, editable, initContent }: Props) {
             color === COLOR_TEXT.BLACK ? COLOR_TEXT.RED : COLOR_TEXT.BLACK;
           setColor(valueColor);
           editor.chain().focus().setColor(valueColor).run();
+        }}
+        onActionTable={(action) => {
+          console.log(action);
+          if (action === "create") {
+            console.log("create");
+            editor
+              .chain()
+              .focus()
+              .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+              .run();
+          }
+          if (action === "row") {
+            console.log("row");
+            editor.chain().focus().addRowAfter().run();
+          }
+          if (action === "column") {
+            editor.chain().focus().addColumnAfter().run();
+          }
         }}
       />
       <EditorContent

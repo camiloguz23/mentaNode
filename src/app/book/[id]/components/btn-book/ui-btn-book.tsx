@@ -6,10 +6,10 @@ import {
   IconDivider,
   IconTextColor,
   UiBtn,
-  UiBtnTitle,
 } from "@/shared/icons";
 import React from "react";
 import style from "./btn-book.module.css";
+import { UiBtnTitle, UiSelectTable } from "./components";
 
 interface Props {
   isActiveH1: boolean;
@@ -24,6 +24,7 @@ interface Props {
   onSelectBold: (value: boolean) => void;
   selectColor: string;
   onSelectColor: () => void;
+  onActionTable: (action: "create" | "row" | "column") => void;
 }
 
 export function UiBtnBook({
@@ -39,6 +40,7 @@ export function UiBtnBook({
   onSelectBold,
   onSelectColor,
   selectColor,
+  onActionTable,
 }: Props) {
   return (
     <div className={style["content-btn"]}>
@@ -48,6 +50,7 @@ export function UiBtnBook({
         activeHeadTwo={isActiveH2}
         activeHeadThree={isActiveH3}
       />
+      <UiSelectTable onCreateTable={(value) => onActionTable(value)} />
       <UiBtn
         className={`${isActiveCode && style["active"]}`}
         onClick={() => {

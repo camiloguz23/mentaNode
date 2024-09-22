@@ -1,0 +1,46 @@
+.containerBtn {
+    position: relative;
+  
+    .btnTitle {
+      width: fit-content;
+      padding: 6px 16px;
+      display: flex;
+      align-items: center;
+      border: 1px solid #918f8fb6;
+      border-radius: 8px;
+      gap: 10px;
+      font-size: 14px;
+    }
+  
+    .content_item {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 10px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      gap: 4px;
+      z-index: 50;
+      background-color: white;
+      min-width: 160px;
+      align-items: center;
+      border: 1px solid #918f8fb6;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  
+    .item {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      width: 100%;
+      cursor: pointer;
+      flex-wrap: nowrap;
+    }
+
+    .icon {
+      font-size: 20px;
+    }
+  }
+  
