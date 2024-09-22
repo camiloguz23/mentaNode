@@ -8,6 +8,7 @@ import {
   IconUp,
   useBoolean,
   IconCheck,
+  UiBtn,
 } from "@/shared/icons";
 import style from "./btn-title.module.css";
 
@@ -27,9 +28,11 @@ export function UiBtnTitle({
   const openModal = useBoolean();
   return (
     <div className={style.containerBtn}>
-      <button className={style.btnTitle} onClick={openModal.toggle}>
-        Titulos {openModal.value ? <IconUp /> : <IconDown />}
-      </button>
+      <UiBtn
+        onClick={openModal.toggle}
+        title={`Titulos`}
+        iconEnd={openModal.value ? <IconUp /> : <IconDown />}
+      />
       {openModal.value && (
         <div className={style.content_item}>
           <span className={style.item} onClick={() => onTitle(1)}>

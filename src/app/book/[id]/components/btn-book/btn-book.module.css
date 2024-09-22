@@ -25,32 +25,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
+    font-size: 14px;
     border-radius: 12px;
     cursor: pointer;
     box-shadow: 1px 4px 12px 1px rgba(0, 0, 0, 0.25);
     transition: 0.5s;
-    padding: 8px;
+    padding: 6px 16px;
     border: 1px solid #9c999971;
     @media (width <= 679px) {
       font-size: 22px;
     }
-
-    &.active {
-      background-color: hsla(130, 70%, 50%, 0.7);
-    }
-
-    &.textcolor {
-      outline: none;
-    }
-
-    @media (hover: hover) {
-      &:hover {
-        transform: scale(1.1);
-        box-shadow:
-          1px 4px 12px rgba(0, 0, 0, 0.25),
-          0px 4px 12px rgba(0, 0, 0, 0.25);
-      }
-    }
   }
+
+  .active {
+    background-color: hsla(130, 70%, 50%, 0.7);
+  }
+
+  .textcolor {
+    outline: none;
+  }
+
+  /* @media (hover: hover) {
+    &:hover {
+      transform: scale(1.1);
+      box-shadow:
+        1px 4px 12px rgba(0, 0, 0, 0.25),
+        0px 4px 12px rgba(0, 0, 0, 0.25);
+    }
+  } */
 }

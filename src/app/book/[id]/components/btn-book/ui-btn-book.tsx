@@ -8,6 +8,7 @@ import {
   IconHead2,
   IconHead3,
   IconTextColor,
+  UiBtn,
   UiBtnTitle,
 } from "@/shared/icons";
 import React from "react";
@@ -44,69 +45,39 @@ export function UiBtnBook({
 }: Props) {
   return (
     <div className={style["content-btn"]}>
-      {/* <button
-        className={`${style["btn-book"]} ${isActiveH1 && style["active"]}`}
-        onClick={() => {
-          onSelectHeading(1);
-        }}
-      >
-        <IconHead1 />
-      </button>
-      <button
-        className={`${style["btn-book"]} ${isActiveH2 && style["active"]}`}
-        onClick={() => {
-          onSelectHeading(2);
-        }}
-      >
-        <IconHead2 />
-      </button>
-      <button
-        className={`${style["btn-book"]} ${isActiveH3 && style["active"]}`}
-        onClick={() => {
-          onSelectHeading(3);
-        }}
-      >
-        <IconHead3 />
-      </button> */}
       <UiBtnTitle
         onTitle={onSelectHeading}
         activeHeadOne={isActiveH1}
         activeHeadTwo={isActiveH2}
         activeHeadThree={isActiveH3}
       />
-      <button
-        className={`${style["btn-book"]} ${isActiveCode && style["active"]}`}
+      <UiBtn
+        className={`${isActiveCode && style["active"]}`}
         onClick={() => {
           onSelectCode();
         }}
-      >
-        <IconCode />
-      </button>
-      <button
-        className={`${style["btn-book"]} ${isActiveDivider && style["active"]}`}
-        onClick={() => {
-          onSelectDivider();
-        }}
-      >
-        <IconDivider />
-      </button>
-      <button
-        className={`${style["btn-book"]} ${isBold && style["active"]}`}
-        onClick={() => {
-          onSelectBold(isBold);
-        }}
-      >
-        <IconBold />
-      </button>
-      <button
+        title=""
+        iconEnd={<IconCode />}
+      />
+      <UiBtn
+        title={""}
+        iconEnd={<IconDivider />}
+        className={`${isActiveDivider && style["active"]}`}
+        onClick={() => onSelectDivider()}
+      />
+      <UiBtn
+        title={""}
+        iconEnd={<IconBold />}
+        className={`${isBold && style["active"]}`}
+        onClick={() => onSelectBold(isBold)}
+      />
+      <UiBtn
         style={{ color: selectColor }}
-        className={`${style["btn-book"]} ${style.textcolor}`}
-        onClick={() => {
-          onSelectColor();
-        }}
-      >
-        <IconTextColor />
-      </button>
+        title={""}
+        iconEnd={<IconTextColor />}
+        className={style.textcolor}
+        onClick={() => onSelectColor()}
+      />
     </div>
   );
 }

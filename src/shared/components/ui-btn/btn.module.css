@@ -1,0 +1,10 @@
+.btn {
+    width: fit-content;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #918f8fb6;
+    border-radius: 8px;
+    gap: 10px;
+    font-size: 14px;
+}

@@ -8,3 +8,4 @@ export * from "./editor-text";
 export * from "./link/ui-link";
 export * from "./ui-empty/ui-empty";
 export * from "./btn-title/btn-title";
+export * from "./ui-btn/ui-btn";
