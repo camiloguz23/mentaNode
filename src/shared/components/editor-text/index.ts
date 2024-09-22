@@ -1,2 +1,1 @@
-export * from './code-custom/code-custom';
-export * from './editor-text';
+export * from "./code-custom/code-custom";

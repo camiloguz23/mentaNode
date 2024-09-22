@@ -2,6 +2,7 @@
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { Toaster } from "sonner";
 interface Props {
   children: React.ReactNode;
 }
@@ -13,7 +14,10 @@ export function UiProviders({ children }: Props) {
   return (
     <>
       <ConvexProvider client={convex}>
-        <GoogleOAuthProvider clientId={key}>{children}</GoogleOAuthProvider>
+        <GoogleOAuthProvider clientId={key}>
+          {children}
+          <Toaster position="top-center" />
+        </GoogleOAuthProvider>
       </ConvexProvider>
     </>
   );

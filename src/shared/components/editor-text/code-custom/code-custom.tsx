@@ -13,9 +13,9 @@ import { Color } from "@tiptap/extension-color";
 import Placeholder from "@tiptap/extension-placeholder";
 import CharacterCount from "@tiptap/extension-character-count";
 import TextStyle from "@tiptap/extension-text-style";
-import { UiBtnBook } from "@/app/book/components";
+import { UiBtnBook } from "@/app/book/[id]/components";
 import { COLOR_TEXT } from "@/shared/constants";
-import CodeBlock from '@tiptap/extension-code-block'
+import CodeBlock from "@tiptap/extension-code-block";
 
 interface Props {
   onChange: (value: string) => void;

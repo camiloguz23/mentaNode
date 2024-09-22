@@ -8,6 +8,7 @@ import {
   IconHead2,
   IconHead3,
   IconTextColor,
+  UiBtnTitle,
 } from "@/shared/icons";
 import React from "react";
 import style from "./btn-book.module.css";
@@ -43,7 +44,7 @@ export function UiBtnBook({
 }: Props) {
   return (
     <div className={style["content-btn"]}>
-      <button
+      {/* <button
         className={`${style["btn-book"]} ${isActiveH1 && style["active"]}`}
         onClick={() => {
           onSelectHeading(1);
@@ -66,7 +67,13 @@ export function UiBtnBook({
         }}
       >
         <IconHead3 />
-      </button>
+      </button> */}
+      <UiBtnTitle
+        onTitle={onSelectHeading}
+        activeHeadOne={isActiveH1}
+        activeHeadTwo={isActiveH2}
+        activeHeadThree={isActiveH3}
+      />
       <button
         className={`${style["btn-book"]} ${isActiveCode && style["active"]}`}
         onClick={() => {

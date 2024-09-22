@@ -8,6 +8,7 @@ import {
   UiSelect,
   useBookStore,
   useBoolean,
+  useDebounce,
 } from "@/shared";
 import { useMutation } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
@@ -21,6 +22,7 @@ export function UiBook({ id }: Props) {
   const { section, email } = useBookStore((store) => store.books);
   const onCreatePage = useMutation(api.query.createPage);
   const onAddContent = useMutation(api.query.saveContent);
+  const { onSearch } = useDebounce();
   const openCreatePage = useBoolean();
   const changePage = useBoolean();
   const [openStyle, setOpenStyle] = useState<string>("init");
@@ -107,7 +109,7 @@ export function UiBook({ id }: Props) {
             <div className="mainBook">
               <CodeCustom
                 onChange={(value: string) => {
-                  onAddContent({
+                  onSearch({
                     content: value,
                     email: email,
                     idPage,
