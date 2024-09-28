@@ -42,6 +42,8 @@ export function BtnGoogle() {
             email: data.email,
             img: data.picture,
             section: user?.section ?? [],
+            category: user?.category ?? [],
+            books: user?.books ?? [],
           });
         })
         .catch(() => {
