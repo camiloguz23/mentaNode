@@ -57,6 +57,7 @@ export function UiBook({ id }: Props) {
             ]}
             onSelect={(value) => {
               setCategoryID(value === " " ? "" : value);
+              setIdPage("");
             }}
           />
           <UiModal
