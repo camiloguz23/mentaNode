@@ -21,12 +21,13 @@ export function SetStoreProvider({ children, userGoogle }: Props) {
   );
 
   useEffect(() => {
-   
     setDataUser({
       name: userGoogle?.name ?? "",
       email: userGoogle?.email ?? "",
       img: userGoogle?.picture ?? "",
       section: bookUser?.section ?? [],
+      category: bookUser?.category ?? [],
+      books: bookUser?.books ?? [],
     });
   }, [userGoogle, bookUser, setDataUser]);
 
