@@ -29,12 +29,15 @@ export function UiHome({ userGoogle }: Props) {
       email: userGoogle?.email ?? "",
     }
   );
+ 
   useEffect(() => {
     setDataUser({
       name: userGoogle?.name ?? "",
       email: userGoogle?.email ?? "",
       img: userGoogle?.picture ?? "",
       section: bookUser?.section ?? [],
+      category: bookUser?.category ?? [],
+      books: bookUser?.books ?? [],
     });
   }, [userGoogle, bookUser]);
 

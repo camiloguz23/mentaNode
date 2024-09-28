@@ -1,5 +1,6 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
+import { title } from "process";
 
 export default defineSchema({
   // Other tables here...
@@ -21,6 +22,16 @@ export default defineSchema({
         id: v.string(),
         titleSection: v.string(),
         idBook: v.string(),
+      })
+    ),
+    category: v.array(
+      v.object({
+        id: v.string(),
+        title: v.string(),
+        idBook: v.string(),
+        pages: v.array(
+          v.object({ id: v.string(), content: v.string(), title: v.string() })
+        ),
       })
     ),
   }),

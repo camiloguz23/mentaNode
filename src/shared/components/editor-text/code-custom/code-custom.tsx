@@ -19,6 +19,7 @@ import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
+import HardBreak from "@tiptap/extension-hard-break";
 import { UiBtnBook } from "./components";
 
 interface Props {
@@ -50,6 +51,7 @@ export function CodeCustom({ onChange, editable, initContent }: Props) {
       TableRow,
       TableHeader,
       TableCell,
+      HardBreak,
     ],
     autofocus: false,
     editable: true,

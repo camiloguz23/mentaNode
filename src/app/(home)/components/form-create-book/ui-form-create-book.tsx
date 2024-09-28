@@ -12,7 +12,7 @@ interface Props {
 
 export function UiFormCreateBook({ onClose }: Props) {
   const onAddNewBook = useMutation(api.query.addNewBook);
-  const { createBook, books } = useBookStore((store) => store);
+  const { books } = useBookStore((store) => store);
   return (
     <form
       className={style.form}

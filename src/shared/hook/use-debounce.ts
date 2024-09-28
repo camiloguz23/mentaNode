@@ -19,7 +19,7 @@ export const useDebounce = () => {
   });
 
   const onSearch = useCallback(
-    (value: { email: string; content: string; idPage: string }) => {
+    (value: { email: string; content: string; idPage: string, categorieId: string }) => {
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
       }
@@ -33,7 +33,7 @@ export const useDebounce = () => {
           .catch(() => {
             TOAST_MESSAGE.error();
           });
-      }, 1000);
+      }, 2000);
     },
     [],
   );

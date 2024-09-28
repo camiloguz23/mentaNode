@@ -1,3 +1,4 @@
+import { title } from "process";
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
@@ -27,6 +28,7 @@ export const onAddUser = mutation({
         books: [],
         name,
         img,
+        category: [],
       });
       const user = await ctx.db
         .query("books")
@@ -87,6 +89,98 @@ export const createPage = mutation({
       idBook: v.string(),
     }),
     email: v.string(),
+    categorieId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const { body, email, categorieId } = args;
+    const book = await ctx.db
+      .query("books")
+      .filter((b) => b.eq(b.field("email"), email))
+      .unique();
+    if (!book) {
+      return;
+    }
+    const id = book._id;
+    if (!!categorieId) {
+      const categories = book.category.map((item) => item);
+      const updateCategorie = categories?.map((item) => {
+        return item.id === categorieId
+          ? {
+              ...item,
+              pages: [
+                ...item.pages,
+                {
+                  id: body.id,
+                  content: body.content,
+                  title: body.titleSection,
+                },
+              ],
+            }
+          : item;
+      });
+      await ctx.db.patch(id, { category: updateCategorie });
+      return;
+    }
+    const newBook = book?.section.map((item) => item);
+    newBook?.push(body);
+    await ctx.db.patch(id, { section: newBook });
+  },
+});
+
+export const saveContent = mutation({
+  args: {
+    content: v.string(),
+    idPage: v.string(),
+    email: v.string(),
+    categorieId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const { content, email, idPage, categorieId } = args;
+    const book = await ctx.db
+      .query("books")
+      .filter((b) => b.eq(b.field("email"), email))
+      .unique();
+    if (!book) {
+      return;
+    }
+    const id = book._id;
+    if (categorieId) {
+      const categories = book.category.map((item) => item);
+      const updateCategorie = categories?.map((item) => {
+        return item.id === categorieId
+          ? {
+              ...item,
+              pages: item.pages.map((page) => {
+                return page.id === idPage
+                  ? {
+                      ...page,
+                      content,
+                    }
+                  : page;
+              }),
+            }
+          : item;
+      });
+      await ctx.db.patch(id, { category: updateCategorie });
+      return;
+    }
+    const updateContentPage = book?.section.map((item) => item);
+    const addContent = updateContentPage?.map((item) => {
+      return item.id === idPage ? { ...item, content } : item;
+    });
+
+    await ctx.db.patch(id, { section: addContent });
+  },
+});
+
+export const onCreateCategrory = mutation({
+  args: {
+    body: v.object({
+      id: v.string(),
+      idBook: v.string(),
+      title: v.string(),
+    }),
+    email: v.string(),
   },
   handler: async (ctx, args) => {
     const { body, email } = args;
@@ -98,34 +192,8 @@ export const createPage = mutation({
       return;
     }
     const id = book._id;
-    const newBook = book?.section.map((item) => item);
-    newBook?.push(body);
-    await ctx.db.patch(id, { section: newBook });
-    return newBook;
-  },
-});
-
-export const saveContent = mutation({
-  args: {
-    content: v.string(),
-    idPage: v.string(),
-    email: v.string(),
-  },
-  handler: async (ctx, args) => {
-    const { content, email, idPage } = args;
-    const book = await ctx.db
-      .query("books")
-      .filter((b) => b.eq(b.field("email"), email))
-      .unique();
-    if (!book) {
-      return;
-    }
-    const id = book._id;
-    const updateContentPage = book?.section.map((item) => item);
-    const addContent = updateContentPage?.map((item) => {
-      return item.id === idPage ? { ...item, content } : item;
-    });
-
-    await ctx.db.patch(id, { section: addContent });
+    const newBook = book?.category.map((item) => item);
+    newBook?.push({ ...body, pages: [] });
+    await ctx.db.patch(id, { category: newBook });
   },
 });

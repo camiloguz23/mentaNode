@@ -21,7 +21,7 @@ export function UiSelect({ label, options, onSelect }: Props) {
         <SelectValue placeholder={label} />
       </SelectTrigger>
       {!!options.length && (
-        <SelectContent>
+        <SelectContent >
           {options.map((option) => (
             <SelectItem key={option.value} value={option.value}>
               {option.label}
