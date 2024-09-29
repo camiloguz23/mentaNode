@@ -1,18 +1,7 @@
 .content-btn {
-  display: flex;
-  align-items: center;
-  padding: 6px;
-  width: fit-content;
-  justify-content: center;
-  gap: 20px;
-  border-radius: 8px;
-  position: fixed;
   top: 120px;
   right: 20px;
   height: 50px;
-  z-index: 10;
-  background-color: hsla(0, 100%, 100%, 0.7);
-  backdrop-filter: blur(5px);
 
   @media (width <= 679px) {
     top: 170px;

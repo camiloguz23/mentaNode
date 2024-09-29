@@ -142,17 +142,7 @@
 
   .label {
     grid-area: label;
-    display: flex;
-    gap: 10px;
-    border-right: 1px solid #616161;
-    padding: 16px 20px;
-    align-items: center;
-    padding: 0 20px;
-    position: fixed;
     top: 120px;
-    width: 100%;
-    background-color: hsla(0, 100%, 100%, 0.6);
-    backdrop-filter: blur(5px);
 
     .modal {
       position: relative;

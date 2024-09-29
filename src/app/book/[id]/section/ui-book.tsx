@@ -4,8 +4,8 @@ import "./book.css";
 import { useState } from "react";
 import {
   CodeCustom,
-  IconPlus,
   UiEmpty,
+  UiModalFixed,
   UiSelect,
   useBookStore,
   useBoolean,
@@ -15,6 +15,7 @@ import {
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
 import { UiModal } from "../components";
+import React from "react";
 
 interface Props {
   id: string;
@@ -45,7 +46,7 @@ export function UiBook({ id }: Props) {
   return (
     <>
       <section className="section-book-main">
-        <section className={"label"}>
+        <UiModalFixed className={"label"} >
           <UiSelect
             label="Categoria"
             options={[
@@ -161,7 +162,7 @@ export function UiBook({ id }: Props) {
               }
             }}
           />
-        </section>
+        </UiModalFixed>
         <section className="content_label">
           {!!idPage || <UiEmpty message="Selecciona una pagina" />}
           {idPage && !changePage.value && (

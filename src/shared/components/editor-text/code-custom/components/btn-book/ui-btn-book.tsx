@@ -6,6 +6,7 @@ import {
   IconDivider,
   IconTextColor,
   UiBtn,
+  UiModalFixed,
 } from "@/shared/icons";
 import React from "react";
 import style from "./btn-book.module.css";
@@ -43,7 +44,7 @@ export function UiBtnBook({
   onActionTable,
 }: Props) {
   return (
-    <div className={style["content-btn"]}>
+    <UiModalFixed className={style["content-btn"]}>
       <UiBtnTitle
         onTitle={onSelectHeading}
         activeHeadOne={isActiveH1}
@@ -78,6 +79,6 @@ export function UiBtnBook({
         className={style.textcolor}
         onClick={() => onSelectColor()}
       />
-    </div>
+    </UiModalFixed>
   );
 }
