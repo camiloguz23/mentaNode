@@ -50,10 +50,12 @@ export function UiBook({ id }: Props) {
             label="Categoria"
             options={[
               { label: "Sin Categoria", value: " " },
-              ...(category.map((item) => ({
-                label: item.title,
-                value: item.id,
-              })) ?? []),
+              ...(category
+                .filter((item) => item.idBook === id)
+                .map((item) => ({
+                  label: item.title,
+                  value: item.id,
+                })) ?? []),
             ]}
             onSelect={(value) => {
               setCategoryID(value === " " ? "" : value);
