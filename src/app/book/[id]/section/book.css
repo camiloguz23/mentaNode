@@ -143,6 +143,12 @@
   .label {
     grid-area: label;
     top: 120px;
+    flex-wrap: wrap;
+
+    @media (width <= 679px) {
+      top: 100px;
+      gap: 10px;
+    }
 
     .modal {
       position: relative;
